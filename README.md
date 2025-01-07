@@ -1,10 +1,11 @@
 # Multi-Language-invoice-Extractor
 Invoice Extractor
 # Creating virtual Environement:
- .open command prompt in the Visual studio code
+ 1)open command prompt in the Visual studio code
  ![image](https://github.com/user-attachments/assets/d3aba96e-2d49-45d3-ae5f-f6b84b540837)
- .Navigate through the project path
- .type the command  python -m venv myenv
+ 2)Navigate through the project path
+ 3)type the command to create virtual environment
+        # python -m venv myenv
  4)Click enter
  5)now the command to activate the scripts
    # myenv\Scripts\activate
