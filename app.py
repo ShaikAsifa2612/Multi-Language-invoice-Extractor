@@ -925,7 +925,7 @@ if submit:
         st.subheader("Uploaded Invoices:")
         for uploaded_file in uploaded_files:
             image = Image.open(uploaded_file)
-            st.image(image, caption=f"File: {uploaded_file.name}", use_column_width=True)
+            st.image(image, caption=f"File: {uploaded_file.name}",use_container_width=True)
 
         # Prepare image data for Gemini API
         image_data = input_image_setup(uploaded_files)
