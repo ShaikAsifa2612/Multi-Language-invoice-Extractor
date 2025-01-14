@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login & Register</title>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+</head>
+<body>
+
+  <div class="container">
+    <div class="form-container">
+      <!-- Login Form -->
+      <div class="form-box login-box show">
+        <h2>Login</h2>
+        <form id="login-form" action='/login' method="POST">
+          <div class="input-group">
+            <label for="login-username">Username or Email</label>
+            <input type="text" id="login-username" name="username-email" required>
+          </div>
+          <div class="input-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" name="password" required>
+            <button type="button" class="view-password-btn" onclick="togglePasswordVisibility('login-password')">👁️</button>
+          </div>
+          <button type="submit" class="btn">Login</button>
+          <p>Don't have an account? <a href="javascript:void(0);" onclick="toggleForm('register')">Register</a></p>
+        </form>
+      </div>
+
+      <!-- Register Form -->
+      <div class="form-box register-box">
+        <h2>Register</h2>
+        <form id="register-form" action='/register' method="POST">
+          <div class="input-group">
+            <label for="register-username">Username</label>
+            <input type="text" id="register-username" name="username" required>
+          </div>
+          <div class="input-group">
+            <label for="register-email">Email</label>
+            <input type="email" id="register-email" name="email" required>
+            <div id="email-error" class="error-message" style="display: none;">Please enter a valid Gmail or Yahoo email.</div>
+          </div>
+          <div class="input-group">
+            <label for="register-password">Password</label>
+            <input type="password" id="register-password" name="password" required>
+            <button type="button" class="view-password-btn" onclick="togglePasswordVisibility('register-password')">👁️</button>
+          </div>
+          <div class="input-group">
+            <label for="register-confirm-password">Confirm Password</label>
+            <input type="password" id="register-confirm-password" name="confirm-password" required>
+            <button type="button" class="view-password-btn" onclick="togglePasswordVisibility('register-confirm-password')">👁️</button>
+            <div id="password-error" class="error-message" style="display: none;">Passwords do not match.</div>
+          </div>
+          <button type="submit" class="btn">Register</button>
+          <p>Already have an account? <a href="javascript:void(0);" onclick="toggleForm('login')">Login</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul>
+      {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+  <script src="{{url_for('static', filename='js/script.js')}}"></script>
+</body>
+</html>
