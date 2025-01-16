@@ -19,21 +19,6 @@ function togglePasswordVisibility(id) {
   passwordField.type = type;
 }
 
-// Email Validation (only Gmail or Yahoo allowed)
-document.getElementById("register-form").addEventListener("submit", function (e) {
-  const email = document.getElementById("register-email").value;
-  const emailError = document.getElementById("email-error");
-
-  const emailPattern = /^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com)$/;
-
-  if (!emailPattern.test(email)) {
-    e.preventDefault();
-    emailError.style.display = "block";
-  } else {
-    emailError.style.display = "none";
-  }
-});
-
 // Password and Confirm Password Validation
 document.getElementById("register-form").addEventListener("submit", function (e) {
   const password = document.getElementById("register-password").value;
@@ -53,32 +38,33 @@ document.getElementById("register-form").addEventListener("submit", function(e) 
   e.preventDefault();
   
   const username = document.getElementById("register-username").value;
-  const email = document.getElementById("register-email").value;
   const password = document.getElementById("register-password").value;
+  const confirmPassword = document.getElementById("register-confirm-password").value;
   
   fetch('/register', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: `username=${encodeURIComponent(username)}&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+      body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}&confirm_password=${encodeURIComponent(confirmPassword)}`
   })
-  .then(response => response.text())
+  .then(response => response.json())
   .then(data => {
-      console.log(data);
-      window.location.href = '/';  // Redirect to homepage or login page
+      if (data.status === "error") {
+          alert(data.message);
+      } else if (data.status === "success") {
+          alert(data.message);
+          window.location.href = '/';  // Redirect to homepage or login page
+      }
   })
   .catch(error => console.error('Error:', error));
 });
-
-
-
 
 // Login Form Submission
 document.getElementById("login-form").addEventListener("submit", function(e) {
   e.preventDefault();  // Prevent default form submission
   
-  const usernameEmail = document.getElementById("login-username").value;
+  const username = document.getElementById("login-username").value;
   const password = document.getElementById("login-password").value;
 
   fetch('/login', {
@@ -86,13 +72,13 @@ document.getElementById("login-form").addEventListener("submit", function(e) {
       headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: `username-email=${encodeURIComponent(usernameEmail)}&password=${encodeURIComponent(password)}`
+      body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
   })
-  .then(response => response.text())
+  .then(response => response.json())
   .then(data => {
-      if (data.includes("Invalid credentials")) {
-          alert('Login failed');
-      } else {
+      if (data.status === "error") {
+          alert(data.message);
+      } else if (data.status === "success") {
           window.location.href = '/success';  // Redirect to success page
       }
   })
