@@ -1,6 +1,6 @@
 INSTALLATION OF MySQL:
 
-[Google](https://www.youtube.com/watch?v=u96rVINbAUI)
+[Click Me!! to see Tutorial](https://www.youtube.com/watch?v=u96rVINbAUI)
 
 Now,
 Also install MySQL extension in VS Code by Weijan Chen
