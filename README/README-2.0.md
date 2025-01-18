@@ -17,7 +17,7 @@ password: <password>
 
 In cmd, 
 
-pip instal mysql-connector-python
+pip install mysql-connector-python
 pip install Flask mysql-connector-python
 pip install Flask-mysqldb
 pip install -r requirements.txt
