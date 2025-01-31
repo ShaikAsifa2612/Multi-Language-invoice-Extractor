@@ -9,8 +9,8 @@ app = Flask(__name__)
 # Database Configuration
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'  # Replace with your MySQL username
-app.config['MYSQL_PASSWORD'] = 'Team7JNTU4Year'  # Replace with your MySQL password
-app.config['MYSQL_DB'] = 'trail6'  # Database name
+app.config['MYSQL_PASSWORD'] = 'Mohan5143@'  # Replace with your MySQL password
+app.config['MYSQL_DB'] = 'sample'  # Database name
 
 mysql = MySQL(app)
 app.secret_key = 'your_secret_key'  # For flashing messages
